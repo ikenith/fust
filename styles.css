@@ -72,22 +72,52 @@ html, body {
   gap: 12px;
 }
 
+/* Water Effect Logo */
 .logo-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
   background: linear-gradient(135deg, #7c5cff, #00d4ff);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 800;
-  font-size: 16px;
-  color: #021018;
+  position: relative;
+  overflow: hidden;
   box-shadow: 0 4px 15px rgba(124, 92, 255, 0.3);
 }
 
+.water-effect {
+  font-weight: 800;
+  font-size: 22px;
+  color: #021018;
+  position: relative;
+  z-index: 2;
+}
+
+.logo-icon::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  animation: waterFlow 4s linear infinite;
+  z-index: 1;
+}
+
+@keyframes waterFlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .logo h1 {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
   background: linear-gradient(135deg, #fff, #8b9bab);
   -webkit-background-clip: text;
@@ -98,9 +128,9 @@ html, body {
 .icon-btn {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  width: 40px;
-  height: 40px;
+  border-radius: 12px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -128,7 +158,7 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 40px;
   width: 100%;
 }
 
@@ -153,6 +183,7 @@ html, body {
   color: #8b9bab;
   margin-bottom: 10px;
   font-weight: 500;
+  text-align: center;
 }
 
 .timer {
@@ -179,13 +210,14 @@ html, body {
   align-items: center;
   width: 100%;
   max-width: 400px;
+  margin-top: 10px;
 }
 
 .progress-bar {
   width: 100%;
   height: 8px;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  border-radius: 12px;
   overflow: hidden;
   margin-top: 10px;
 }
@@ -193,7 +225,7 @@ html, body {
 .progress-fill {
   height: 100%;
   background: linear-gradient(90deg, #7c5cff, #00d4ff);
-  border-radius: 4px;
+  border-radius: 12px;
   width: 100%;
   transition: width 0.3s ease;
 }
@@ -218,7 +250,7 @@ html, body {
   align-items: center;
   gap: 8px;
   padding: 16px 24px;
-  border-radius: 12px;
+  border-radius: 16px;
   font-weight: 600;
   font-size: 16px;
   cursor: pointer;
@@ -253,6 +285,7 @@ html, body {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
   color: #e6eef3;
+  border-radius: 16px;
 }
 
 .btn-secondary:hover {
@@ -263,6 +296,7 @@ html, body {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.08);
   color: #8b9bab;
+  border-radius: 16px;
 }
 
 .btn-ghost:hover {
@@ -309,30 +343,44 @@ html, body {
   font-weight: 700;
 }
 
+.settings-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .setting-group {
-  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .setting-group label {
-  display: block;
   color: #8b9bab;
   font-size: 14px;
-  margin-bottom: 8px;
   font-weight: 500;
 }
 
-.setting-group input, .setting-group select {
+.setting-group input {
   width: 100%;
-  padding: 14px;
-  border-radius: 8px;
+  padding: 16px;
+  border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(0, 0, 0, 0.2);
   color: inherit;
   font-size: 16px;
   transition: all 0.2s ease;
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
-.setting-group input:focus, .setting-group select:focus {
+.setting-group input::-webkit-outer-spin-button,
+.setting-group input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.setting-group input:focus {
   outline: none;
   border-color: rgba(124, 92, 255, 0.5);
   background: rgba(0, 0, 0, 0.3);
