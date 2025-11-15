@@ -5,7 +5,6 @@
   const totalMins = document.getElementById('totalMins');
   const qMins = document.getElementById('qMins');
   const beepMs = document.getElementById('beepMs');
-  const themeSelect = document.getElementById('theme');
   const qClock = document.getElementById('qClock');
   const tClock = document.getElementById('tClock');
   const startBtn = document.getElementById('startBtn');
@@ -254,31 +253,6 @@
     startBtn.disabled = false;
   }
 
-  // Theme switching
-  function changeTheme(theme) {
-    const root = document.documentElement;
-    const bgAnimation = document.querySelector('.bg-animation');
-    
-    // Remove existing theme classes
-    root.classList.remove('theme-dark', 'theme-light', 'theme-blue', 'theme-purple');
-    root.classList.add(`theme-${theme}`);
-    
-    // Update background gradient based on theme
-    switch(theme) {
-      case 'light':
-        bgAnimation.style.background = 'linear-gradient(135deg, #f0f4f8 0%, #e1e8f0 100%)';
-        break;
-      case 'blue':
-        bgAnimation.style.background = 'linear-gradient(135deg, #0c1b33 0%, #1a365d 100%)';
-        break;
-      case 'purple':
-        bgAnimation.style.background = 'linear-gradient(135deg, #1a103d 0%, #2d1b69 100%)';
-        break;
-      default: // dark
-        bgAnimation.style.background = 'linear-gradient(135deg, #0f1419 0%, #0a0f14 100%)';
-    }
-  }
-
   // Event listeners
   totalMins.addEventListener('change', syncValues);
   qMins.addEventListener('change', syncValues);
@@ -328,11 +302,6 @@
 
   settingsClose.addEventListener('click', () => {
     settingsPanel.classList.remove('active');
-  });
-
-  // Theme selector
-  themeSelect.addEventListener('change', (e) => {
-    changeTheme(e.target.value);
   });
 
   // Touch event improvements for mobile
